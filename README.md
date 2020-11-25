@@ -1,15 +1,21 @@
 # pizzaspirit
-- [ ] add timestamp
+- [x] add timestamp
 - [ ] clean:  into one decorator or function in django model - just for less code
+- [ ] split settings
 - [ ] setup Postgres
     - `Docker`
-- [ ] split settings
-- [ ] separate order state from Order
+
+
+- [ ] separate orderstate / status
+    - [ ] ```class OrderState()```
+    - [ ] if changed - change others
     - order state needs a funktion to change not update
-- [ ] add order_id to Pizza class when its added to cart !!!
-- [ ] create a serializer to change Pizzas in
+
+- [ ] User in Customer
+- [ ] user OrderState
 
 ## howto
+### API
 ### Customer
 - [ ] get pizza flavors from Model Pizza
 - [ ] get order state

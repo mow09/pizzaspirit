@@ -3,23 +3,28 @@ from pizza.models import (
     Pizza,
     PizzaOrder,
     Order,
-    # Customer,
+    Customer,
     )
 from django.contrib.auth.models import User
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
-class UserSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = ['url', 'username', 'email', 'groups']
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['url', 'username', 'email', 'groups']
 
-# class PizzaSerializer(serializers.HyperlinkedModelSerializer):
+class CustomerSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Customer
+        fields = ['name']
+
+# class PizzaSerializer(serializers.lSerializer):
 class PizzaSerializer(serializers.ModelSerializer):
     """PizzaSerializer to provide RESTfull design."""
     class Meta:
         model = Pizza
         fields = [
-            'id',
+            # 'id',
             'flavor',
             ]
 
@@ -27,7 +32,6 @@ class PizzaSerializer(serializers.ModelSerializer):
 # class PizzaOrderSerializer(serializers.HyperlinkedModelSerializer):
 class PizzaOrderSerializer(serializers.ModelSerializer):
     """PizzaOrderSerializer to provide RESTfull design."""
-    # customer = UserSerializer(many=False)
     pizza = PizzaSerializer(read_only=True, many=False)
     class Meta:
         model = PizzaOrder
@@ -46,7 +50,8 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     """OrderSerializer to provide RESTfull design."""
     pizzas = PizzaOrderSerializer(many=True)
-    customer = UserSerializer(many=False)
+    # customer = UserSerializer()
+    customer = CustomerSerializer()
     class Meta:
         model = Order
         fields = "__all__"

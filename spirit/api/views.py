@@ -15,6 +15,7 @@ from api.serializers import (
 
 
 
+# class PizzaViewSet(viewsets.ViewSet):
 class PizzaViewSet(viewsets.ModelViewSet):
     """API endpoint that allows Pizza to be views or edit."""
 
