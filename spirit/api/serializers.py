@@ -4,14 +4,15 @@ from pizza.models import (
     PizzaOrder,
     Order,
     Customer,
+    OrderState
     )
 from django.contrib.auth.models import User
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
-# class UserSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = User
-#         fields = ['url', 'username', 'email', 'groups']
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['username']
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
@@ -27,6 +28,11 @@ class PizzaSerializer(serializers.ModelSerializer):
             # 'id',
             'flavor',
             ]
+# class OrderStateSerializer(serializers.ModelSerializer):
+#     """PizzaSerializer to provide RESTfull design."""
+#     class Meta:
+#         model = OrderState
+#         fields = "__all__"
 
 
 # class PizzaOrderSerializer(serializers.HyperlinkedModelSerializer):
@@ -50,8 +56,9 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     """OrderSerializer to provide RESTfull design."""
     pizzas = PizzaOrderSerializer(many=True)
-    # customer = UserSerializer()
-    customer = CustomerSerializer()
+    customer = UserSerializer()
+    # order_state = OrderStateSerializer()
+    # customer = CustomerSerializer()
     class Meta:
         model = Order
         fields = "__all__"

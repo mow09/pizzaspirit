@@ -65,6 +65,7 @@ class PizzaOrder(models.Model):
          in size {self.size}"
 
 
+
 class OrderState(models.Model):
     """Order state to provide status."""
 
@@ -87,22 +88,23 @@ class OrderState(models.Model):
     #     related_name='id',  # id in Order when made...
     #     )
 
-
+    def __str__(self):
+        return f"Ordered:{self.ordered}"
 
 
 class Order(models.Model):
     """The whole order."""
 
-    customer = models.ForeignKey(
-        Customer,
-        on_delete=models.CASCADE,
-        # related_name='customer'
-        )
     # customer = models.ForeignKey(
-    #     settings.AUTH_USER_MODEL,
+    #     Customer,
     #     on_delete=models.CASCADE,
-    #     related_name='customer'
+    #     # related_name='customer'
     #     )
+    customer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name='customer'
+        )
     pizzas = models.ManyToManyField(
             PizzaOrder,
             related_name='pizzas'
@@ -111,7 +113,7 @@ class Order(models.Model):
         OrderState,
         on_delete=models.CASCADE,
         related_name='order_state',
-        null=True
+        blank=True
         )
 
     created_at = models.DateTimeField(auto_now_add=True)
