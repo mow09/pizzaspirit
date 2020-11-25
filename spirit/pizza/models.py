@@ -11,40 +11,46 @@ SIZE_CHOICES = (
 FLAVOR_CHOICES =  (
     ('Margarita', 'margarita'),
     ('Marinara', 'marinara'),
-    ('Malami', 'salami'),
+    ('Salami', 'salami'),
 )
 # FLAVOR_CHOICES =  (
 #     ('01', 'margarita'),
 #     ('02', 'marinara'),
 #     ('03', 'salami'),
 # )
-class Order(models.Model):
-    """The whole order."""
 
-    customer = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE,
-        related_name='customer'
+
+
+class Pizza(models.Model):
+    """The Pizza."""
+
+    # order_id =
+
+    flavor = models.CharField(
+        choices=FLAVOR_CHOICES,
+        max_length=42,
         )
-
-    # order_state = models.ForeignKey(
-    #     OrderState,
+    # pizza = models.ForeignKey(
+    #     PizzaOrder,
+    #     related_name='pizza',
     #     on_delete=models.CASCADE,
-    #     related_name='order_state',
+    #     null=True
+    #     )
+    # flavor = models.IntegerField(
+    #     choices=FLAVOR_CHOICES,
     #     )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    # maybe all are cooking, moving, delivered
-    # change all of one bool for all pizzas... subfunction
 
     def get_timestamp(self):
         """Return a string of created_at and updated_at."""
         return f"Created: {self.created_at}, Updated: {self.updated_at}"
 
     def __str__(self):
-        return f"By {self.customer}"
+        return f"Pizza {self.get_flavor_display().title()}"
+
+
 
 class PizzaOrder(models.Model):
     """An ordered pizza."""
@@ -54,16 +60,16 @@ class PizzaOrder(models.Model):
     #     on_delete=models.CASCADE,
     #     related_name='customer'
     #     )
-    # pizza = models.ForeignKey(
-    #     Pizza,
-    #     on_delete=models.CASCADE,
-    #     related_name='pizza',
-    #     )
-
-    pizza_order = models.ManyToManyField(
-        Order,
-        related_name='pizzas'
+    pizza = models.ForeignKey(
+        Pizza,
+        on_delete=models.CASCADE,
+        related_name='pizza',
         )
+
+    # pizza_order = models.ManyToManyField(
+    #     Order,
+    #     related_name='pizzas'
+    #     )
     size =  models.CharField(
         choices=SIZE_CHOICES,
         max_length=1,
@@ -108,14 +114,17 @@ class PizzaOrder(models.Model):
          in size {self.size}"
 
 
+
+
+
 class OrderState(models.Model):
     """Order state to provide status."""
 
-    order = models.ForeignKey(
-        Order,
-        related_name='order_state',
-        on_delete=models.CASCADE
-        )
+    # order = models.ForeignKey(
+    #     Order,
+    #     related_name='order_state',
+    #     on_delete=models.CASCADE
+    #     )
     # ordered_date = models.DateTimeField()
     ordered = models.BooleanField(default=False)
 
@@ -129,34 +138,39 @@ class OrderState(models.Model):
     #     on_delete=models.CASCADE,
     #     related_name='id',  # id in Order when made...
     #     )
+    def __str__(self):
+        return f"Is Ordered: {self.ordered}"
 
+class Order(models.Model):
+    """The whole order."""
 
-
-class Pizza(models.Model):
-    """The Pizza."""
-
-    # order_id =
-
-    flavor = models.CharField(
-        choices=FLAVOR_CHOICES,
-        max_length=42,
-        )
-    pizza = models.ForeignKey(
-        PizzaOrder,
-        related_name='pizza',
+    customer = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
-        null=True
+        related_name='customer'
         )
-    # flavor = models.IntegerField(
-    #     choices=FLAVOR_CHOICES,
-    #     )
+
+    order_state = models.ForeignKey(
+        OrderState,
+        on_delete=models.CASCADE,
+        related_name='order_state',
+        )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    pizzas = models.ManyToManyField(
+        PizzaOrder,
+        # on_delete=models.CASCADE,
+        related_name='pizzas',
+        )
+
+    # maybe all are cooking, moving, delivered
+    # change all of one bool for all pizzas... subfunction
 
     def get_timestamp(self):
         """Return a string of created_at and updated_at."""
         return f"Created: {self.created_at}, Updated: {self.updated_at}"
 
     def __str__(self):
-        return f"Pizza {self.get_flavor_display().title()}"
+        return f"By {self.customer}"
