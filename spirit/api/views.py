@@ -2,16 +2,18 @@ from pizza.models import (
     Pizza,
     PizzaOrder,
     Order,
+    # Customer,
 )
 from rest_framework import viewsets
 from api.serializers import (
     PizzaSerializer,
     PizzaOrderSerializer,
     OrderSerializer,
+    # CustomerSerializer,
     )
 
 
-
+# class PizzaViewSet(viewsets.ViewSet):
 class PizzaViewSet(viewsets.ModelViewSet):
     """API endpoint that allows Pizza to be views or edit."""
 

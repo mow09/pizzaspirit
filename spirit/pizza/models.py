@@ -9,9 +9,9 @@ SIZE_CHOICES = (
 )
 
 FLAVOR_CHOICES =  (
-    ('1', 'margarita'),
-    ('2', 'marinara'),
-    ('3', 'salami'),
+    ('Margarita', 'margarita'),
+    ('Marinara', 'marinara'),
+    ('Malami', 'salami'),
 )
 
 
@@ -20,11 +20,6 @@ class Pizza(models.Model):
 
     flavor = models.IntegerField(
         choices=FLAVOR_CHOICES,
-        )
-    size =  models.CharField(
-        choices=SIZE_CHOICES,
-        max_length=1,
-        default='M'
         )
 
     created_at = models.DateTimeField(auto_now_add=True)
@@ -35,34 +30,31 @@ class Pizza(models.Model):
         return f"Created: {self.created_at}, Updated: {self.updated_at}"
 
     def __str__(self):
-        return f"Pizza {self.get_flavor_display().title()}\
-                    in {self.get_size_display()} size."
+        return f"Pizza {self.get_flavor_display().title()}"
 
 
 class PizzaOrder(models.Model):
     """An ordered pizza."""
 
-    customer = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
-        )
+    # name = models.ForeignKey(
+    #     settings.AUTH_USER_MODEL,
+    #     on_delete=models.CASCADE,
+    #     related_name='customer'
+    #     )
     pizza = models.ForeignKey(
         Pizza,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='pizza',
+        )
+    size =  models.CharField(
+        choices=SIZE_CHOICES,
+        max_length=1,
+        default='M'
         )
     quantity = models.IntegerField(default=1)
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    # return as a string
-    ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
-
-    cooking = models.BooleanField(default=False)
-    moving = models.BooleanField(default=False)
-    delivered = models.BooleanField(default=False)
-    received = models.BooleanField(default=False)
 
     # TODO:
     # function:
@@ -103,14 +95,24 @@ class Order(models.Model):
 
     customer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
+        related_name='customer'
         )
     pizzas = models.ManyToManyField(
-        PizzaOrder
+        PizzaOrder,
+        related_name='pizzas'
         )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    # ordered_date = models.DateTimeField()
+    ordered = models.BooleanField(default=False)
+
+    cooking = models.BooleanField(default=False)
+    moving = models.BooleanField(default=False)
+    delivered = models.BooleanField(default=False)
+    received = models.BooleanField(default=False)
 
     # maybe all are cooking, moving, delivered
     # change all of one bool for all pizzas... subfunction

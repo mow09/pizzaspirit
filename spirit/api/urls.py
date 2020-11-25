@@ -5,6 +5,7 @@ from api import views
 app_name = 'api'
 
 router = routers.DefaultRouter()
+# router.register(r'customer', views.CustomerViewSet)
 router.register(r'pizza', views.PizzaViewSet, basename='pizza')
 router.register(r'pizzaorder', views.PizzaOrderViewSet, basename='pizzaorder')
 router.register(r'order', views.OrderViewSet, basename='order')
