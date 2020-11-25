@@ -5,6 +5,7 @@ from pizza.models import (
     # Customer,
 )
 from rest_framework import viewsets
+from rest_framework.response import Response
 from api.serializers import (
     PizzaSerializer,
     PizzaOrderSerializer,
@@ -13,13 +14,17 @@ from api.serializers import (
     )
 
 
-# class PizzaViewSet(viewsets.ViewSet):
+
 class PizzaViewSet(viewsets.ModelViewSet):
     """API endpoint that allows Pizza to be views or edit."""
 
     queryset = Pizza.objects.all().order_by()
-    # queryset = Pizza.objects.all().order_by('-id')
     serializer_class = PizzaSerializer
+    # def list(self, request):
+    #     queryset = Pizza.objects.all()
+    #     serializer = PizzaSerializer(queryset, many=True)
+    #     return Response(serializer.data)
+
 
 
 class PizzaOrderViewSet(viewsets.ModelViewSet):
@@ -34,5 +39,5 @@ class OrderViewSet(viewsets.ModelViewSet):
     """API endpoint that allows Order to be views or edit."""
 
     queryset = Order.objects.all().order_by()
-    # queryset = Order.objects.all().order_by('-id')
+    # queryset = PizzaOrder.objects.all().order_by('-id')
     serializer_class = OrderSerializer

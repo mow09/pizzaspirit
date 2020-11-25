@@ -18,6 +18,8 @@ FLAVOR_CHOICES =  (
 class Pizza(models.Model):
     """The Pizza."""
 
+    # order_id =
+
     flavor = models.IntegerField(
         choices=FLAVOR_CHOICES,
         )
@@ -36,7 +38,7 @@ class Pizza(models.Model):
 class PizzaOrder(models.Model):
     """An ordered pizza."""
 
-    # name = models.ForeignKey(
+    # customer = models.ForeignKey(
     #     settings.AUTH_USER_MODEL,
     #     on_delete=models.CASCADE,
     #     related_name='customer'
