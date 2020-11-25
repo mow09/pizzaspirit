@@ -86,8 +86,8 @@ class PizzaOrder(models.Model):
         return f"Created: {self.created_at}, Updated: {self.updated_at}"
 
     def __str__(self):
-        return f"{self.quantity} of {self.pizza.get_flavor_display().title()}\
-                    by {self.customer.username}."
+        return f"{self.quantity}x {self.pizza.get_flavor_display().title()}\
+         in size {self.size}"
 
 
 class Order(models.Model):
@@ -120,3 +120,6 @@ class Order(models.Model):
     def get_timestamp(self):
         """Return a string of created_at and updated_at."""
         return f"Created: {self.created_at}, Updated: {self.updated_at}"
+
+    def __str__(self):
+        return f"By {self.customer}"
