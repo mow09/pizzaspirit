@@ -13,6 +13,28 @@ FLAVOR_CHOICES =  (
     ('Marinara', 'marinara'),
     ('Malami', 'salami'),
 )
+# FLAVOR_CHOICES =  (
+#     ('01', 'margarita'),
+#     ('02', 'marinara'),
+#     ('03', 'salami'),
+# )
+
+
+# class OrderState(models.Model):
+#     """Order state to provide status."""
+#     order_id =
+    # order_id = models.IntegerField(
+    #     Order,
+    #     on_delete=models.CASCADE,
+    #     related_name='id',  # id in Order when made...
+    #     )
+#     # ordered_date = models.DateTimeField()
+#     ordered = models.BooleanField(default=False)
+#
+#     cooking = models.BooleanField(default=False)
+#     moving = models.BooleanField(default=False)
+#     delivered = models.BooleanField(default=False)
+#     received = models.BooleanField(default=False)
 
 
 class Pizza(models.Model):
@@ -20,9 +42,13 @@ class Pizza(models.Model):
 
     # order_id =
 
-    flavor = models.IntegerField(
+    flavor = models.CharField(
         choices=FLAVOR_CHOICES,
+        max_length=42,
         )
+    # flavor = models.IntegerField(
+    #     choices=FLAVOR_CHOICES,
+    #     )
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -105,16 +131,14 @@ class Order(models.Model):
         related_name='pizzas'
         )
 
+    # order_state = models.ForeignKey(
+    #     OrderState,
+    #     on_delete=models.CASCADE,
+    #     related_name='order_state',
+    #     )
+
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
-    # ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
-
-    cooking = models.BooleanField(default=False)
-    moving = models.BooleanField(default=False)
-    delivered = models.BooleanField(default=False)
-    received = models.BooleanField(default=False)
 
     # maybe all are cooking, moving, delivered
     # change all of one bool for all pizzas... subfunction
