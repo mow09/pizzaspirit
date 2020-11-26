@@ -11,8 +11,15 @@
     - [ ] if changed - change others
     - order state needs a funktion to change not update
 
-- [ ] User in Customer
+- [x] User in Customer
 - [ ] user OrderState
+
+## Testing
+- [ ] split it
+- pytest
+- pytest-django
+- pytet-cov
+- (mixer)
 
 ## howto
 ### API
