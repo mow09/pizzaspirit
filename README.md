@@ -92,7 +92,9 @@ def get_timestamp(self):
 ```
 ## Model
 ### Pizza
+It needs a flavor !
 ### PizzaOrder
+Choose of exiting flavors by id.
 ### Order
 
 # Order state
@@ -104,3 +106,5 @@ changed by pizzaspirit
 changed by pizzaspirit
 ## recieved
 changed by customer
+
+# Thanks

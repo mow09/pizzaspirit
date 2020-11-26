@@ -1,7 +1,8 @@
 import json
-from pizza.models import Pizza, Order, PizzaOrder
+from pizza.models import Pizza, Order, PizzaOrder, Customer
 from api.serializers import PizzaSerializer, OrderSerializer, PizzaOrderSerializer
 
+# from django.contrib.auth.models import User
 from django.urls import reverse, resolve
 
 from rest_framework.test import APITestCase
@@ -36,7 +37,24 @@ class PizzaOderSerializerTestCase(APITestCase):
 class OderSerializerTestCase(APITestCase):
 
     def setUP(self):
-        ...
+        # self.pizzas = baker.prepare(PizzaOrder, _quantity=2)
+        self.customer = baker.make('pizza.Customer')
+
+
+        # print(customer)
+
+    def test_order_post(self):
+        # get it by querry
+        # customer = self.customer.objects.all()
+        # print(pizzas)
+        customer = Customer.objects.all()
+        print(customer)
+        data = {
+            # "pizzas": [],
+            # "customer": customer
+            }
+        response = self.client.post("/pizzaorder/", data, format='json')
+        # self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 # class PizzaOrderSerializerTestCase(APITestCase):
 #

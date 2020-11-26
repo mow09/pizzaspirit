@@ -96,16 +96,16 @@ class OrderState(models.Model):
 class Order(models.Model):
     """The whole order."""
 
-    # customer = models.ForeignKey(
-    #     Customer,
-    #     on_delete=models.CASCADE,
-    #     # related_name='customer'
-    #     )
     customer = models.ForeignKey(
-        settings.AUTH_USER_MODEL,
+        Customer,
         on_delete=models.CASCADE,
-        related_name='customer'
+        # related_name='customer'
         )
+    # customer = models.ForeignKey(
+    #     settings.AUTH_USER_MODEL,
+    #     on_delete=models.CASCADE,
+    #     related_name='customer',
+    #     )
     pizzas = models.ManyToManyField(
             PizzaOrder,
             related_name='pizzas'

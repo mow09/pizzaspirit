@@ -49,7 +49,7 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
     class Meta:
         model = PizzaOrder
         fields = [
-            # 'id',
+            'id',
             # 'customer',
             'pizza_id',
             'pizza',
@@ -69,23 +69,21 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
         pizza_order.save()
         return pizza_order
 
-    #     pizza_data = validated_data.pop('pizza')
-    #     print(pizza_data)
-    #
-    #     pizza = PizzaOrder.objects.create(**validated_data)
-    #     print(pizza)
-    #     Pizza.objects.create(flavor=pizza, **pizza_data)
-    #     return pizza
-
 
 
 # class OrderSerializer(serializers.HyperlinkedModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     """OrderSerializer to provide RESTfull design."""
     pizzas = PizzaOrderSerializer(many=True)
-    customer = UserSerializer()
+    # customer = UserSerializer()
+    print('\n\n')
+    print(pizzas)
+    print('\n\n')
+    print('\n\n')
+    print(pizzas)
+    print('\n\n')
     # order_state = OrderStateSerializer()
-    # customer = CustomerSerializer()
+    customer = CustomerSerializer()
     class Meta:
         model = Order
         fields = "__all__"
