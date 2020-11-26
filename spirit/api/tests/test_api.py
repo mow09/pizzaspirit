@@ -1,14 +1,15 @@
 import json
-from pizza.models import Order, PizzaOrder
-from api.serializers import OrderSerializer, PizzaOrderSerializer
+from pizza.models import Pizza, Order, PizzaOrder
+from api.serializers import PizzaSerializer, OrderSerializer, PizzaOrderSerializer
 
 from django.urls import reverse, resolve
 
 from rest_framework.test import APITestCase
-from rest_framework import status
+from rest_framework import status, serializers
 
+from model_bakery import baker
 
-class PizzaTestCase(APITestCase):
+class PizzaSerializerTestCase(APITestCase):
 
     # ('Margarita', 'margarita'),
     # ('Marinara', 'marinara'),
@@ -22,23 +23,22 @@ class PizzaTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
-class PizzaOderTestCase(APITestCase):
+class PizzaOderSerializerTestCase(APITestCase):
+    def setUp(self):
+        self.pizza = baker.make(Pizza)
 
     def test_pizza_order_post(self):
-        data = {"pizza:": {"flavor": "Margarita"}, "size": "L", "quantity": 3}
-        print(data)
+        data = {"pizza_id":1,"quantity":1,"size":"M"}
         response = self.client.post("/pizzaorder/", data, format='json')
-        print(data)
-        # response = self.client.post('api:pizza', data)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
-class OderTestCase(APITestCase):
+class OderSerializerTestCase(APITestCase):
 
     def setUP(self):
         ...
 
-# class PizzaOrderTestCase(APITestCase):
+# class PizzaOrderSerializerTestCase(APITestCase):
 #
 #     def test_pizzaorder_api(self):
 #         data = {
