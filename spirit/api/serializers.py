@@ -65,7 +65,9 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
         for item in validated_data.items():
             print(item)
         print("\n\n\n\n\n\n\n\n")
-        return PizzaOrder(**validated_data)
+        pizza_order = PizzaOrder(**validated_data)
+        pizza_order.save()
+        return pizza_order
 
     #     pizza_data = validated_data.pop('pizza')
     #     print(pizza_data)
