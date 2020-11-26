@@ -25,7 +25,7 @@ class PizzaTestCase(APITestCase):
 class PizzaOderTestCase(APITestCase):
 
     def test_pizza_order_post(self):
-        data = {"pizza:": {"flavor": "Salami"}, "size": "L", "quantity": 3}
+        data = {"pizza:": {"flavor": "Margarita"}, "size": "L", "quantity": 3}
         print(data)
         response = self.client.post("/pizzaorder/", data, format='json')
         print(data)

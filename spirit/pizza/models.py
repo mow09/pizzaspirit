@@ -44,6 +44,7 @@ class PizzaOrder(models.Model):
         Pizza,
         on_delete=models.CASCADE,
         related_name='pizza',
+        null=True
         )
 
     size =  models.CharField(
