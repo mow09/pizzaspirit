@@ -2,7 +2,7 @@
 - [x] add timestamp
 - [ ] clean:  into one decorator or function in django model - just for less code
 - [ ] split settings
-- [ ] setup Postgres
+- [x] setup Postgres
     - `Docker`
 
 
@@ -11,8 +11,8 @@
     - [ ] if changed - change others
     - order state needs a funktion to change not update
 
-- [x] User in Customer
-- [ ] user OrderState
+- [ ] User in Customer
+- [ ] User OrderState
 
 ## Testing
 - [ ] split it
@@ -20,9 +20,28 @@
 - pytest-django
 - pytet-cov
 - (mixer)
+- [ ]
+### APITestCase
+#### Missing
+- [ ] Order APITestCase
 
-## howto
-### API
+# Have `docker-compose` on your machine
+## Run docker-compose
+# Pizza
+## Flavors:
+1. Margarita
+2. Marinara
+3. Salami
+
+# Pizza Order
+## Choose
+- size {'S', 'M', 'L'}
+- pizza flavor by ID
+- quantity
+# Order
+- pizzas by ID
+- customer
+
 ### Customer
 - [ ] get pizza flavors from Model Pizza
 - [ ] get order state
@@ -97,7 +116,7 @@ It needs a flavor !
 Choose of exiting flavors by id.
 ### Order
 
-# Order state
+# Order States
 ## cooking
 changed by pizzaspirit
 ## moving
@@ -106,5 +125,6 @@ changed by pizzaspirit
 changed by pizzaspirit
 ## recieved
 changed by customer
+
 
 # Thanks

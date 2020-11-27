@@ -68,6 +68,8 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
         # print("HEHEHEEHEHEHEHHEH: "+validated_data)
         for i in validated_data.items():
              print(i)
+             print(i)
+             print(i)
         pizza_order.save()
         return pizza_order
 
