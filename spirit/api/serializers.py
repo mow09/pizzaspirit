@@ -17,7 +17,10 @@ class UserSerializer(serializers.ModelSerializer):
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
-        fields = ['name']
+        fields = [
+        # 'id',
+        'name'
+        ]
 
 # class PizzaSerializer(serializers.lSerializer):
 class PizzaSerializer(serializers.ModelSerializer):
@@ -45,7 +48,8 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
         source="pizza",
         queryset=Pizza.objects.all()
     )
-    print(pizza_id)
+    # print(pizza_id)
+    pizza = PizzaSerializer(many=False, read_only=True)
     class Meta:
         model = PizzaOrder
         fields = [
@@ -60,12 +64,10 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
         # fields = "__all__"
 
     def create(self, validated_data):
-        print("\n\n\n\n\n\n\n\n")
-        print(validated_data)
-        for item in validated_data.items():
-            print(item)
-        print("\n\n\n\n\n\n\n\n")
         pizza_order = PizzaOrder(**validated_data)
+        # print("HEHEHEEHEHEHEHHEH: "+validated_data)
+        for i in validated_data.items():
+             print(i)
         pizza_order.save()
         return pizza_order
 
@@ -74,20 +76,69 @@ class PizzaOrderSerializer(serializers.ModelSerializer):
 # class OrderSerializer(serializers.HyperlinkedModelSerializer):
 class OrderSerializer(serializers.ModelSerializer):
     """OrderSerializer to provide RESTfull design."""
-    pizzas = PizzaOrderSerializer(many=True)
-    # customer = UserSerializer()
-    print('\n\n')
-    print(pizzas)
-    print('\n\n')
-    print('\n\n')
-    print(pizzas)
-    print('\n\n')
-    # order_state = OrderStateSerializer()
-    customer = CustomerSerializer()
+    pizzas = PizzaOrderSerializer(many=True, read_only=True)
+    pizzas_id = serializers.PrimaryKeyRelatedField(
+        source="pizzas",
+        many=True,
+        queryset=PizzaOrder.objects.all()
+    )
+
+    # pizza = PizzaSerializer(many=False, read_only=True)
+    # # pizza_id conatins the flavor(s)
+    # pizza_id = serializers.PrimaryKeyRelatedField(
+    #     source="pizza",
+    #     queryset=Pizza.objects.all()
+    # )
+    customer = CustomerSerializer
     class Meta:
         model = Order
-        fields = "__all__"
+        # fields = "__all__"
+        fields = [
+            'id',
+            'pizzas_id',
+            'pizzas',
+            'customer',
+            ]
 
+    # def create(self, validated_data):
+    #     print(validated_data)
+    #     for i in validated_data['pizzas']:
+    #         print(i)
+    #         for j in i:
+    #             print(i[j])
+    #     print()
+    #     print(validated_data.keys())
+    #     # for k, v in validated_data.items():
+    #     #     print(k, v)
+    #     #     print()
+    #     #     if k=='pizzas':
+    #     #         for pizza in v:
+    #     #             print(pizza)
+    #     #     print()
+    #     print()
+    #     # pizzas = validated_data['pizzas']
+    #     # pizzas = validated_data['pizzas']
+    #     customer = validated_data['customer']
+    #     print()
+    #     print(customer.id)
+    #     print(customer.__dict__.keys())
+    #     # print()
+    #     # print(pizzas)
+    #     print()
+    #     print()
+    #     order = Order(**validated_data)
+    #     print(order)
+    #     order.save()
+    #     # order.save()
+    #     return order
+
+        # fields = [
+        #     'id',
+        #     'customer',
+        #     'pizzas_id'
+        #     'pizzas',
+        #     'order_state',
+        # ]
         # fields = [
         #     'id',
         #     'customer',
@@ -99,6 +150,9 @@ class OrderSerializer(serializers.ModelSerializer):
         #     'received',
         #
         # ]
+
+
+
 
     # def validate(self, data):
     #     """

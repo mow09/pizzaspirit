@@ -13,11 +13,13 @@ FLAVOR_CHOICES =  (
     ('Marinara', 'marinara'),
     ('Salami', 'salami'),
 )
-# FLAVOR_CHOICES =  (
-#     ('01', 'margarita'),
-#     ('02', 'marinara'),
-#     ('03', 'salami'),
-# )
+ORDER_STATE_CHOICES =  (
+    ('O', 'ordered'),
+    ('C', 'cooking'),
+    ('M', 'moving'),
+    ('D', 'delivered'),
+    ('R', 'received'),
+)
 class Customer(models.Model):
     name = models.CharField(max_length=42, default='Don')
     def __str__(self):
@@ -56,7 +58,7 @@ class PizzaOrder(models.Model):
 
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+#
     def get_timestamp(self):
         """Return a string of created_at and updated_at."""
         return f"Created: {self.created_at}, Updated: {self.updated_at}"
@@ -101,6 +103,7 @@ class Order(models.Model):
         on_delete=models.CASCADE,
         # related_name='customer'
         )
+    # customer = Customer()
     # customer = models.ForeignKey(
     #     settings.AUTH_USER_MODEL,
     #     on_delete=models.CASCADE,
@@ -110,11 +113,16 @@ class Order(models.Model):
             PizzaOrder,
             related_name='pizzas'
             )
-    order_state = models.ForeignKey(
-        OrderState,
-        on_delete=models.CASCADE,
-        related_name='order_state',
-        blank=True
+    # order_state = models.ForeignKey(
+    #     OrderState,
+    #     on_delete=models.CASCADE,
+    #     related_name='order_state',
+    #     blank=True
+    #     )
+    order_state =  models.CharField(
+        choices=ORDER_STATE_CHOICES,
+        max_length=1,
+        default='O'
         )
 
     created_at = models.DateTimeField(auto_now_add=True)

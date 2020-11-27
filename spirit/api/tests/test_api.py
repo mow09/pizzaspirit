@@ -24,6 +24,7 @@ class PizzaSerializerTestCase(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
 
+
 class PizzaOderSerializerTestCase(APITestCase):
     def setUp(self):
         self.pizza = baker.make(Pizza)
@@ -48,39 +49,10 @@ class OderSerializerTestCase(APITestCase):
         # customer = self.customer.objects.all()
         # print(pizzas)
         customer = Customer.objects.all()
-        print(customer)
+        # print(customer)
         data = {
             # "pizzas": [],
             # "customer": customer
             }
         response = self.client.post("/pizzaorder/", data, format='json')
         # self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-
-# class PizzaOrderSerializerTestCase(APITestCase):
-#
-#     def test_pizzaorder_api(self):
-#         data = {
-#             "pizza" : {
-#                 "flavor": "Salami"
-#             },
-#             "size": "L",
-#             "quantity": 3,
-#         }
-#         response = self.client.post('api:pizzaorder', data)
-#         self.assertEqual(response.status, status.HTTP_201_CREATED)
-        # path = reverse('api:pizzaorder')
-        # assert resolve(path).view_name == 'api:pizzaorder'
-
-
-# class TestApi:
-#
-#     def test_pizza_api(self):
-#         path = reverse('api:pizza')
-#         assert resolve(path).view_name == 'api:pizza'
-    #
-    #
-    # def test_order_api(self):
-    #     path = reverse('api:order')
-    #     # ID first object
-    #     # path = reverse('api:order', kwargs={'pk': 1})
-    #     assert resolve(path).view_name == 'api:order'
