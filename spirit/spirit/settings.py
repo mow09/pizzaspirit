@@ -1,4 +1,5 @@
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -11,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = '8n1z6+e_ip$h52(y&v9l3e=+jq@cj0mga9%%0!p38&qot2i@&+'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -78,30 +79,32 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # }
 # TODO:
 # setup Docker PostgreSQL for Backend
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgres',
-        'USER': 'postgres',
-        'PASSWORD': 'postgres',
-        'HOST': 'db',
-        #'HOST': '127.0.0.1',
-#        'HOST': '0.0.0.0',
-        'PORT': 5432,
+if os.environ['MACOS']:
+    DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'pizzaspirit',  # DB_NAME
+           'USER': 'django',
+           'PASSWORD': 'admin',
+           'HOST': '127.0.0.1',
+           'PORT': '5432',
+       }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
+            'HOST': 'db',
+            #'HOST': '127.0.0.1',
+    #        'HOST': '0.0.0.0',
+            'PORT': 5432,
+        }
+    }
 
-#DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'pizzaspirit',  # DB_NAME
-#        'USER': 'django',
-#        'PASSWORD': 'admin',
-#        'HOST': '127.0.0.1',
-#        'PORT': '5432',
-#    }
-#}
+
 # DB_USER = 'django'
 # DB_PW = 'django2cloud'
 # DB_ENGINE = 'django.db.backends.postgresql',

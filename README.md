@@ -2,6 +2,8 @@
 - [x] add timestamp
 - [ ] clean:  into one decorator or function in django model - just for less code
 - [ ] split settings
+    - [ ] Docker takes another DB
+
 - [x] setup Postgres
     - `Docker`
 
@@ -14,6 +16,7 @@
 - [ ] User in Customer
 - [ ] User OrderState
 
+
 ## Testing
 - [ ] split it
 - pytest
@@ -23,7 +26,7 @@
 - [ ]
 ### APITestCase
 #### Missing
-- [ ] Order APITestCase
+- [ ] Order APITestCases
 
 # Have `docker-compose` on your machine
 ## Run docker-compose
