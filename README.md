@@ -16,6 +16,8 @@
 - [ ] User in Customer
 - [ ] User OrderState
 
+COPY python spirit/manage.py test api
+
 
 ## Testing
 - [ ] split it

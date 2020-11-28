@@ -79,7 +79,14 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # }
 # TODO:
 # setup Docker PostgreSQL for Backend
-if os.environ['MACOS']:
+if 'TESTDUDE' in os.environ:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
+elif 'MACOS' in os.environ:
     DATABASES = {
        'default': {
            'ENGINE': 'django.db.backends.postgresql_psycopg2',
