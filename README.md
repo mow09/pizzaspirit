@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/mow09/pizzaspirit.svg?=main)](https://travis-ci.com/mow09/pizzaspirit)
 # pizzaspirit
 - [x] add timestamp
 - [ ] clean:  into one decorator or function in django model - just for less code
