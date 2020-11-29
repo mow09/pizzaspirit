@@ -1,8 +1,8 @@
 language: python
 python:
   - "3.6"
-env:
-  - TESTDUDE='True'
+# env:
+#   - TESTDUDE='True'
 install:
   - pip install -r spirit/requirements.txt
 script:

@@ -10,29 +10,29 @@
 _0.0.0.0:8420/ is the root - following root + viewset_
 ## Viewsets
 #### pizza/
-    - list pizza flavors:
-        1. Margarita
-        1. Marinara
-        1. Salami
-    - chosen by identifier in pizzaorder
+- list pizza flavors:
+    1. Margarita
+    1. Marinara
+    1. Salami
+- chosen by identifier in pizzaorder
 #### pizzaorder/
-    - list all pizzaorders
-    - etc.
-    - set up an pizzaorder:
-        - choose pizza flavor by id
-        - quantity and
-        - size ∈ {'S', 'M', 'L'}
-        - like this: {"pizza_id":1,"quantity":1,"size":"M"}
+- list all pizzaorders
+- etc.
+- set up an pizzaorder:
+    - choose pizza flavor by id
+    - quantity and
+    - size ∈ {'S', 'M', 'L'}
+    - like this: {"pizza_id":1,"quantity":1,"size":"M"}
 #### order/
-    - list, create, delete...
-    - filter:
-        - ?customer_username=admin/ (check test data)
-        - ?order_state=<ORDERSTATE>/
-            - ('O', 'ordered'),
-            - ('C', 'cooking'),
-            - ('M', 'moving'),
-            - ('D', 'delivered'),
-            - ('R', 'received'),
+- list, create, delete...
+- filter:
+    - ?customer_username=admin/ (check test data)
+    - ?order_state=<ORDERSTATE>/
+        - ('O', 'ordered'),
+        - ('C', 'cooking'),
+        - ('M', 'moving'),
+        - ('D', 'delivered'),
+        - ('R', 'received'),
 
 
 <!-- # pizzaspirit

@@ -81,17 +81,18 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # }
 # TODO:
 # setup Docker PostgreSQL for Backend
-if 'TESTDUDE' in os.environ:
-    print('\n\n\n\t\tTESTDUDE\n\n')
-    if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': str(BASE_DIR / 'db.sqlite3'),
-            }
-        }
+# if 'TESTDUDE' in os.environ:
+#     print('\n\n\n\t\tTESTDUDE\n\n')
+#     if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
+#         DATABASES = {
+#             'default': {
+#                 'ENGINE': 'django.db.backends.sqlite3',
+#                 'NAME': str(BASE_DIR / 'db.sqlite3'),
+#             }
+#         }
 if 'MACOS' in os.environ:
     if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
+        print('\n\n\n\t\tON MACOS\n\n')
         DATABASES = {
            'default': {
                'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -102,8 +103,8 @@ if 'MACOS' in os.environ:
                'PORT': '5432',
            }
        }
-if 'ONDOCKER' in os.environ:
-    if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
+elif 'ONDOCKER' in os.environ:
+    if os.environ['ONDOCKER'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
         print('\n\n\n\t\tON DOCKER\n\n')
         DATABASES = {
             'default': {
@@ -119,6 +120,8 @@ if 'ONDOCKER' in os.environ:
         }
 else:
     print("SQLite3")
+    if 'TESTDUDE' in os.environ:
+        print(os.environ['TESTDUDE'], 'is', type(os.environ['TESTDUDE']))
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
