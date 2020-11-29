@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # setup Docker PostgreSQL for Backend
 if 'TESTDUDE' in os.environ:
     print('\n\n\n\t\tTESTDUDE\n\n')
-    if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
+    if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
         DATABASES = {
             'default': {
                 'ENGINE': 'django.db.backends.sqlite3',
@@ -91,7 +91,7 @@ if 'TESTDUDE' in os.environ:
             }
         }
 if 'MACOS' in os.environ:
-    if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
+    if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
         DATABASES = {
            'default': {
                'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -102,18 +102,27 @@ if 'MACOS' in os.environ:
                'PORT': '5432',
            }
        }
+if 'ONDOCKER' in os.environ:
+    if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
+        print('\n\n\n\t\tON DOCKER\n\n')
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.postgresql',
+                'NAME': 'pizzaspirit',
+                'USER': 'django',
+                'PASSWORD': 'admin',
+                'HOST': 'db',
+                #'HOST': '127.0.0.1',
+        #        'HOST': '0.0.0.0',
+                'PORT': 5432,
+            }
+        }
 else:
-    print('\n\n\n\t\tON DOCKER\n\n')
+    print("SQLite3")
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'pizzaspirit',
-            'USER': 'django',
-            'PASSWORD': 'admin',
-            'HOST': 'db',
-            #'HOST': '127.0.0.1',
-    #        'HOST': '0.0.0.0',
-            'PORT': 5432,
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': str(BASE_DIR / 'db.sqlite3'),
         }
     }
 
