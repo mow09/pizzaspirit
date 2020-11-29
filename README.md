@@ -1,12 +1,18 @@
 [![Build Status](https://travis-ci.com/mow09/pizzaspirit.svg?=main)](https://travis-ci.com/mow09/pizzaspirit)
+
+# Start the API
+1. `git clone https://github.com/mow09/pizzaspirit`
+2. `cd pizzaspirit`
+3. `docker-compose up --build
+
+
+
+
 # pizzaspirit
 - [x] add timestamp
 - [ ] clean:  into one decorator or function in django model - just for less code
 - [ ] split settings
     - [ ] Docker takes another DB
-
-- [x] setup Postgres
-    - `Docker`
 
 
 - [ ] separate orderstate / status
@@ -16,8 +22,6 @@
 
 - [ ] User in Customer
 - [ ] User OrderState
-
-COPY python spirit/manage.py test api
 
 
 ## Testing
@@ -34,27 +38,27 @@ COPY python spirit/manage.py test api
 # Have `docker-compose` on your machine
 ## Run docker-compose
 # Pizza
+The pizza flaves are set and will be used by id.
 ## Flavors:
 1. Margarita
 2. Marinara
 3. Salami
 
 # Pizza Order
-## Choose
-- size {'S', 'M', 'L'}
-- pizza flavor by ID
-- quantity
+Pizza order is an ordered pizza. We have to set size, pizza_id (contains ingredients - flavor).
+## Pizza Order specifics
+- choose size 
+    - ['S', 'M', 'L']
+- set pizza_id for flavor
+- choose quantity 
+   - [1,..,n]
 # Order
-- pizzas by ID
+An Order conatins a customer and the ordered pizzas via order_id.
+## Order specifics
+- pizzas
+    - [pizzas], pissas=[pizza_ids] - all the ordered pizzas by id
 - customer
-
-### Customer
-- [ ] get pizza flavors from Model Pizza
-- [ ] get order state
-
-### Pizza Spirit
-- [ ] hide pizzaorder - is just for the backend to create an order
-- [ ] change (not update?) state of order
+    - ...
 
 ### Binding to views
 ```python
@@ -115,12 +119,6 @@ def get_timestamp(self):
     """Return a string of created_at and updated_at."""
     return f"Created: {self.created_at}, Updated: {self.updated_at}"
 ```
-## Model
-### Pizza
-It needs a flavor !
-### PizzaOrder
-Choose of exiting flavors by id.
-### Order
 
 # Order States
 ## cooking
@@ -134,6 +132,9 @@ changed by customer
 
 
 # Thanks
+- postman
+- model-bakery
+- pytest
 
 ## Going deeper
 env:
