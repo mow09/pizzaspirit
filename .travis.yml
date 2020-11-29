@@ -2,7 +2,6 @@ language: python
 python:
   - "3.6"
 install:
-  - pip install -r requirements.txt
+  - pip install -r spirit/requirements.txt
 script:
-  - python -m pytest
-  - python spirit/manage.py test
+  - python spirit/manage.py test api
