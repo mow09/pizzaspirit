@@ -757,7 +757,9 @@ COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
 --
 
 COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
-1	pbkdf2_sha256$216000$W67Si0tlWxLA$oeXo0AY44/nmOc7qdI0s5PdUwFTuQXLUiHk2VK57p30=	2020-11-29 11:46:45.063548+01	t	admin				t	t	2020-11-29 11:46:33.200886+01
+1	pbkdf2_sha256$216000$jOJJhOSCAcgx$XILgzKc2CPXulL76mov7wFVplU0eEzXMg93UHkqXnu8=	2020-11-29 19:39:30.271866+01	t	admin				t	t	2020-11-29 19:38:24.109807+01
+2	pbkdf2_sha256$216000$diBBDSEnB2RY$Q6zb49VSgvnzc4d/xMw7REAV2iNCkeZsWDaQLoBvehI=	\N	f	Don				f	t	2020-11-29 19:41:23.853024+01
+3	pbkdf2_sha256$216000$JGbgHPzXOWsw$ZXy6i4GV/q/EfqM/Me7i1lMf5Nc/+G8jyJfim37e04Q=	\N	f	Sapore				f	t	2020-11-29 19:43:14.260719+01
 \.
 
 
@@ -782,6 +784,22 @@ COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
 --
 
 COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2020-11-29 19:41:23.973646+01	2	Don	1	[{"added": {}}]	9	1
+2	2020-11-29 19:43:14.380873+01	3	Sapore	1	[{"added": {}}]	9	1
+3	2020-11-29 19:43:34.510635+01	1	Pizza Margarita	1	[{"added": {}}]	3	1
+4	2020-11-29 19:43:41.017702+01	2	Pizza Marinara	1	[{"added": {}}]	3	1
+5	2020-11-29 19:43:45.989031+01	3	Pizza Salami	1	[{"added": {}}]	3	1
+6	2020-11-29 19:44:11.096484+01	1	5x Salami         in size S	1	[{"added": {}}]	4	1
+7	2020-11-29 19:44:35.209625+01	2	1x Margarita         in size M	1	[{"added": {}}]	4	1
+8	2020-11-29 19:44:59.417006+01	3	1x Marinara         in size M	1	[{"added": {}}]	4	1
+9	2020-11-29 19:45:13.973308+01	4	1x Margarita         in size L	1	[{"added": {}}]	4	1
+10	2020-11-29 19:45:23.79991+01	5	2x Margarita         in size L	1	[{"added": {}}]	4	1
+11	2020-11-29 19:45:35.189293+01	6	3x Margarita         in size L	1	[{"added": {}}]	4	1
+12	2020-11-29 19:45:56.582908+01	1	By admin	1	[{"added": {}}]	5	1
+13	2020-11-29 19:46:28.280044+01	2	By Sapore	1	[{"added": {}}]	5	1
+14	2020-11-29 19:47:12.634715+01	3	By Sapore	1	[{"added": {}}]	5	1
+15	2020-11-29 19:47:52.315952+01	4	By Sapore	1	[{"added": {}}]	5	1
+16	2020-11-29 19:48:20.554443+01	5	By Don	1	[{"added": {}}]	5	1
 \.
 
 
@@ -809,25 +827,26 @@ COPY public.django_content_type (id, app_label, model) FROM stdin;
 --
 
 COPY public.django_migrations (id, app, name, applied) FROM stdin;
-1	contenttypes	0001_initial	2020-11-29 11:45:24.436399+01
-2	auth	0001_initial	2020-11-29 11:45:24.467439+01
-3	admin	0001_initial	2020-11-29 11:45:24.528549+01
-4	admin	0002_logentry_remove_auto_add	2020-11-29 11:45:24.546735+01
-5	admin	0003_logentry_add_action_flag_choices	2020-11-29 11:45:24.556118+01
-6	contenttypes	0002_remove_content_type_name	2020-11-29 11:45:24.573101+01
-7	auth	0002_alter_permission_name_max_length	2020-11-29 11:45:24.581605+01
-8	auth	0003_alter_user_email_max_length	2020-11-29 11:45:24.590197+01
-9	auth	0004_alter_user_username_opts	2020-11-29 11:45:24.597554+01
-10	auth	0005_alter_user_last_login_null	2020-11-29 11:45:24.607194+01
-11	auth	0006_require_contenttypes_0002	2020-11-29 11:45:24.609246+01
-12	auth	0007_alter_validators_add_error_messages	2020-11-29 11:45:24.616999+01
-13	auth	0008_alter_user_username_max_length	2020-11-29 11:45:24.628458+01
-14	auth	0009_alter_user_last_name_max_length	2020-11-29 11:45:24.636685+01
-15	auth	0010_alter_group_name_max_length	2020-11-29 11:45:24.646229+01
-16	auth	0011_update_proxy_permissions	2020-11-29 11:45:24.65369+01
-17	auth	0012_alter_user_first_name_max_length	2020-11-29 11:45:24.66173+01
-18	pizza	0001_initial	2020-11-29 11:45:24.689027+01
-19	sessions	0001_initial	2020-11-29 11:45:24.705921+01
+1	contenttypes	0001_initial	2020-11-29 19:37:58.655981+01
+2	auth	0001_initial	2020-11-29 19:37:58.68685+01
+3	admin	0001_initial	2020-11-29 19:37:58.722894+01
+4	admin	0002_logentry_remove_auto_add	2020-11-29 19:37:58.736128+01
+5	admin	0003_logentry_add_action_flag_choices	2020-11-29 19:37:58.743494+01
+6	contenttypes	0002_remove_content_type_name	2020-11-29 19:37:58.762889+01
+7	auth	0002_alter_permission_name_max_length	2020-11-29 19:37:58.77095+01
+8	auth	0003_alter_user_email_max_length	2020-11-29 19:37:58.779721+01
+9	auth	0004_alter_user_username_opts	2020-11-29 19:37:58.786826+01
+10	auth	0005_alter_user_last_login_null	2020-11-29 19:37:58.794689+01
+11	auth	0006_require_contenttypes_0002	2020-11-29 19:37:58.796736+01
+12	auth	0007_alter_validators_add_error_messages	2020-11-29 19:37:58.805244+01
+13	auth	0008_alter_user_username_max_length	2020-11-29 19:37:58.815597+01
+14	auth	0009_alter_user_last_name_max_length	2020-11-29 19:37:58.826717+01
+15	auth	0010_alter_group_name_max_length	2020-11-29 19:37:58.835982+01
+16	auth	0011_update_proxy_permissions	2020-11-29 19:37:58.843284+01
+17	auth	0012_alter_user_first_name_max_length	2020-11-29 19:37:58.854887+01
+18	pizza	0001_initial	2020-11-29 19:37:58.881585+01
+19	pizza	0002_auto_20201129_1835	2020-11-29 19:37:58.912314+01
+20	sessions	0001_initial	2020-11-29 19:37:58.918329+01
 \.
 
 
@@ -836,7 +855,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 --
 
 COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
-dbtw4w9zxdzltqqlrvn2wpkieu2uxn60	.eJxVjEEOwiAQRe_C2hCgMp1x6b5naIYOSNVAUtqV8e7apAvd_vfef6mRtzWPW4vLOIu6KKtOv1vg6RHLDuTO5Vb1VMu6zEHvij5o00OV-Lwe7t9B5pa_dXAuWWuErGfsEHuLoaeQvBGIiERkQYwXQTQu-S6CpzMTgUkCAF69P7uZNrI:1kjKE9:1q7S4-vIZlmgi9x8bJGik-6M6VmjlNugEH9eElX-S6U	2020-12-13 11:46:45.066101+01
+4xms8azq1gwunsm0ig3357oztlkdj5im	.eJxVjMsOwiAURP-FtSFUHhaX7vsNhPtAqgaS0q6M_25JutBkVnPOzFuEuK05bI2XMJO4ikGcfjuI-OTSAT1iuVeJtazLDLIr8qBNTpX4dTvcv4McW-5rlxIgemZ9ATR7fEo6Wq-so3My3pLBMY2KidFo42xUCAN4p3j3QHy-JI45Ww:1kjRbe:DWgV8aP35ilDtxHu930bA2AQR6-e52YNyPQ3MzCvNmk	2020-12-13 19:39:30.274121+01
 \.
 
 
@@ -853,6 +872,11 @@ COPY public.pizza_customer (id, name) FROM stdin;
 --
 
 COPY public.pizza_order (id, order_state, created_at, updated_at, customer_id) FROM stdin;
+1	R	2020-11-29 19:45:56.57893+01	2020-11-29 19:45:56.578947+01	1
+2	M	2020-11-29 19:46:28.276972+01	2020-11-29 19:46:28.276989+01	3
+3	C	2020-11-29 19:47:12.631597+01	2020-11-29 19:47:12.631614+01	3
+4	O	2020-11-29 19:47:52.312641+01	2020-11-29 19:47:52.312663+01	3
+5	R	2020-11-29 19:48:20.551338+01	2020-11-29 19:48:20.551354+01	2
 \.
 
 
@@ -861,6 +885,12 @@ COPY public.pizza_order (id, order_state, created_at, updated_at, customer_id) F
 --
 
 COPY public.pizza_order_pizzas (id, order_id, pizzaorder_id) FROM stdin;
+1	1	1
+2	2	4
+3	3	5
+4	4	4
+5	5	2
+6	5	3
 \.
 
 
@@ -877,6 +907,9 @@ COPY public.pizza_orderstate (id, ordered, cooking, moving, delivered, received)
 --
 
 COPY public.pizza_pizza (id, flavor) FROM stdin;
+1	Margarita
+2	Marinara
+3	Salami
 \.
 
 
@@ -885,6 +918,12 @@ COPY public.pizza_pizza (id, flavor) FROM stdin;
 --
 
 COPY public.pizza_pizzaorder (id, size, quantity, created_at, updated_at, pizza_id) FROM stdin;
+1	S	5	2020-11-29 19:44:11.095069+01	2020-11-29 19:44:11.09509+01	3
+2	M	1	2020-11-29 19:44:35.208595+01	2020-11-29 19:44:35.208612+01	1
+3	M	1	2020-11-29 19:44:59.416001+01	2020-11-29 19:44:59.416018+01	2
+4	L	1	2020-11-29 19:45:13.972006+01	2020-11-29 19:45:13.972028+01	1
+5	L	2	2020-11-29 19:45:23.798954+01	2020-11-29 19:45:23.79897+01	1
+6	L	3	2020-11-29 19:45:35.188319+01	2020-11-29 19:45:35.188335+01	1
 \.
 
 
@@ -920,7 +959,7 @@ SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
 -- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
+SELECT pg_catalog.setval('public.auth_user_id_seq', 3, true);
 
 
 --
@@ -934,7 +973,7 @@ SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
 -- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.django_admin_log_id_seq', 1, false);
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 16, true);
 
 
 --
@@ -948,7 +987,7 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 11, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 19, true);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 20, true);
 
 
 --
@@ -962,14 +1001,14 @@ SELECT pg_catalog.setval('public.pizza_customer_id_seq', 1, false);
 -- Name: pizza_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.pizza_order_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pizza_order_id_seq', 5, true);
 
 
 --
 -- Name: pizza_order_pizzas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.pizza_order_pizzas_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pizza_order_pizzas_id_seq', 6, true);
 
 
 --
@@ -983,14 +1022,14 @@ SELECT pg_catalog.setval('public.pizza_orderstate_id_seq', 1, false);
 -- Name: pizza_pizza_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.pizza_pizza_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pizza_pizza_id_seq', 3, true);
 
 
 --
 -- Name: pizza_pizzaorder_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.pizza_pizzaorder_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pizza_pizzaorder_id_seq', 6, true);
 
 
 --
@@ -1377,11 +1416,11 @@ ALTER TABLE ONLY public.django_admin_log
 
 
 --
--- Name: pizza_order pizza_order_customer_id_584131fd_fk_pizza_customer_id; Type: FK CONSTRAINT; Schema: public; Owner: django
+-- Name: pizza_order pizza_order_customer_id_584131fd_fk_auth_user_id; Type: FK CONSTRAINT; Schema: public; Owner: django
 --
 
 ALTER TABLE ONLY public.pizza_order
-    ADD CONSTRAINT pizza_order_customer_id_584131fd_fk_pizza_customer_id FOREIGN KEY (customer_id) REFERENCES public.pizza_customer(id) DEFERRABLE INITIALLY DEFERRED;
+    ADD CONSTRAINT pizza_order_customer_id_584131fd_fk_auth_user_id FOREIGN KEY (customer_id) REFERENCES public.auth_user(id) DEFERRABLE INITIALLY DEFERRED;
 
 
 --

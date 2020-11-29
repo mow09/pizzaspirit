@@ -46,4 +46,4 @@ class OrderViewSet(viewsets.ModelViewSet):
     # filter_backends = [filters.SearchFilter]
     # or even OrderingFilter?
     # search_fields = ['customer__name']
-    filterset_fields = ['customer__name', 'order_state']
+    filterset_fields = ['customer__username', 'order_state']

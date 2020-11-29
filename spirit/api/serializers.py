@@ -10,16 +10,17 @@ from django.contrib.auth.models import User
 
 # class UserSerializer(serializers.HyperlinkedModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        fields = ['username']
+        fields = ('id', 'username')
 
 class CustomerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Customer
         fields = [
         # 'id',
-        'name'
+        'username'
         ]
 
 # class PizzaSerializer(serializers.lSerializer):
@@ -91,7 +92,8 @@ class OrderSerializer(serializers.ModelSerializer):
     #     source="pizza",
     #     queryset=Pizza.objects.all()
     # )
-    customer = CustomerSerializer
+    # customer = CustomerSerializer
+    customer = UserSerializer
     class Meta:
         model = Order
         # fields = "__all__"

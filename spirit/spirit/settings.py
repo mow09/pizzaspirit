@@ -82,8 +82,6 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # TODO:
 # setup Docker PostgreSQL for Backend
 if 'TESTDUDE' in os.environ:
-    print(os.environ['TESTDUDE'])
-    print(os.environ['TESTDUDE'])
     if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
         DATABASES = {
             'default': {
@@ -93,7 +91,6 @@ if 'TESTDUDE' in os.environ:
         }
 if 'MACOS' in os.environ:
     if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
-        print(os.environ['MACOS'])
         DATABASES = {
            'default': {
                'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -109,9 +106,9 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
+            'NAME': 'pizzaspirit',
+            'USER': 'django',
+            'PASSWORD': 'admin',
             'HOST': 'db',
             #'HOST': '127.0.0.1',
     #        'HOST': '0.0.0.0',

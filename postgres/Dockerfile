@@ -1,3 +1,3 @@
 FROM postgres
 
-ADD ./pizza_spirit.sql /docker-entrypoint-initdb.d
+ADD ./pg_import.sql /docker-entrypoint-initdb.d
