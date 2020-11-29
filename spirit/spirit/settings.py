@@ -80,48 +80,42 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # TODO:
 # setup Docker PostgreSQL for Backend
 if 'TESTDUDE' in os.environ:
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': str(BASE_DIR / 'db.sqlite3'),
+    print(os.environ['TESTDUDE'])
+    print(os.environ['TESTDUDE'])
+    if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': str(BASE_DIR / 'db.sqlite3'),
+            }
         }
-    }
-elif 'MACOS' in os.environ:
-    DATABASES = {
-       'default': {
-           'ENGINE': 'django.db.backends.postgresql_psycopg2',
-           'NAME': 'pizzaspirit',  # DB_NAME
-           'USER': 'django',
-           'PASSWORD': 'admin',
-           'HOST': '127.0.0.1',
-           'PORT': '5432',
+if 'MACOS' in os.environ:
+    if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
+        print(os.environ['MACOS'])
+        DATABASES = {
+           'default': {
+               'ENGINE': 'django.db.backends.postgresql_psycopg2',
+               'NAME': 'pizzaspirit',  # DB_NAME
+               'USER': 'django',
+               'PASSWORD': 'admin',
+               'HOST': '127.0.0.1',
+               'PORT': '5432',
+           }
        }
-    }
 else:
+    print('\n\n\n\t\tON DOCKER\n\n')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'pizzaspirit',
-            'USER': 'django',
-            'PASSWORD': 'admin',
+            'NAME': 'postgres',
+            'USER': 'postgres',
+            'PASSWORD': 'postgres',
             'HOST': 'db',
             #'HOST': '127.0.0.1',
     #        'HOST': '0.0.0.0',
             'PORT': 5432,
         }
     }
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': 'postgres',
-    #         'USER': 'postgres',
-    #         'PASSWORD': 'postgres',
-    #         'HOST': 'db',
-    #         #'HOST': '127.0.0.1',
-    # #        'HOST': '0.0.0.0',
-    #         'PORT': 5432,
-    #     }
-    # }
 
 
 # DB_USER = 'django'
