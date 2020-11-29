@@ -101,15 +101,27 @@ else:
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'postgres',
-            'USER': 'postgres',
-            'PASSWORD': 'postgres',
+            'NAME': 'pizzaspirit',
+            'USER': 'django',
+            'PASSWORD': 'admin',
             'HOST': 'db',
             #'HOST': '127.0.0.1',
     #        'HOST': '0.0.0.0',
             'PORT': 5432,
         }
     }
+    # DATABASES = {
+    #     'default': {
+    #         'ENGINE': 'django.db.backends.postgresql',
+    #         'NAME': 'postgres',
+    #         'USER': 'postgres',
+    #         'PASSWORD': 'postgres',
+    #         'HOST': 'db',
+    #         #'HOST': '127.0.0.1',
+    # #        'HOST': '0.0.0.0',
+    #         'PORT': 5432,
+    #     }
+    # }
 
 
 # DB_USER = 'django'

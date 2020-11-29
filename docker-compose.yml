@@ -2,18 +2,22 @@ version: '3'
 
 services:
   db:
-    image: postgres
+    # image: postgres
+    restart: always
     environment:
-      - POSTGRES_DB=postgres
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
-      - PGDATA=/var/lib/postgresql/data
+      - POSTGRES_DB=pizzaspirit
+      - POSTGRES_USER=django
+      - POSTGRES_PASSWORD=admin
+#      - PGDATA=/var/lib/postgresql/data
+    build: ./postgres/.
 #    ports: 
 #      - "5555:5432"
-    volumes:
-      - data/var/lib/postgresql/data
+#    volumes:
+#      - data:/var/lib/postgresql/data
+#      - ./postgres/data:/var/lib/postgresql/data
   spirit:
     build: spirit/.
+    restart: always
     volumes:
       - ./spirit/:/app/
     ports:
@@ -21,5 +25,34 @@ services:
     links:
       - db
 
-volumes:
-  data: {}
+#volumes:
+#  data: {}
+#  ./postgres/admin_pizza_spirit.sql:
+
+
+# version: '3'
+
+# services:
+#   db:
+#     image: postgres
+#     restart: always
+#     environment:
+#       - POSTGRES_DB=postgres
+#       - POSTGRES_USER=postgres
+#       - POSTGRES_PASSWORD=postgres
+#       - PGDATA=/var/lib/postgresql/data
+# #    ports: 
+# #      - "5555:5432"
+#     volumes:
+#       - data:/var/lib/postgresql/data
+#   spirit:
+#     build: spirit/.
+#     volumes:
+#       - ./spirit/:/app/
+#     ports:
+#       - "8420:8420"
+#     links:
+#       - db
+
+# volumes:
+#   data: ./postgres/admin_pizza_spirit.sql
