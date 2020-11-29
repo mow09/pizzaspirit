@@ -82,6 +82,7 @@ WSGI_APPLICATION = 'spirit.wsgi.application'
 # TODO:
 # setup Docker PostgreSQL for Backend
 if 'TESTDUDE' in os.environ:
+    print('\n\n\n\t\tTESTDUDE\n\n')
     if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES']:
         DATABASES = {
             'default': {

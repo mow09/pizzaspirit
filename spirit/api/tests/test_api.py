@@ -34,20 +34,19 @@ class PizzaOderSerializerTestCase(APITestCase):
 
     def test_pizza_order_post(self):
         data = {"pizza_id":1,"quantity":1,"size":"M"}
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
-        print(self.pizza)
         response = self.client.post("/pizzaorder/", data, format='json')
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
 
-
+"""
+{
+    "pizzas_id": [
+        "This field is required."
+    ],
+    "customer": [
+        "This field is required."
+    ]
+}
+"""
 # class OderSerializerTestCase(APITestCase):
 #     def setUP(self):
 #         print("TEST")

@@ -1,9 +1,9 @@
+from django.contrib.auth.models import User
 from pizza.models import (
     Pizza,
     PizzaOrder,
     Order,
-    # Customer,
-)
+    )
 from rest_framework import viewsets
 from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
@@ -11,11 +11,21 @@ from api.serializers import (
     PizzaSerializer,
     PizzaOrderSerializer,
     OrderSerializer,
-    # CustomerSerializer,
+    UserSerializer,
     )
 # from rest_framework import filters
 
 
+# class PizzaViewSet(viewsets.ViewSet):
+class UserViewSet(viewsets.ReadOnlyModelViewSet):
+    """API endpoint that allows Pizza to be views or edit."""
+
+    queryset = User.objects.all().order_by()
+    serializer_class = UserSerializer
+    # def list(self, request):
+    #     queryset = Pizza.objects.all()
+    #     serializer = PizzaSerializer(queryset, many=True)
+    #     return Response(serializer.data)
 
 # class PizzaViewSet(viewsets.ViewSet):
 class PizzaViewSet(viewsets.ModelViewSet):
