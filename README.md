@@ -3,10 +3,19 @@
 # Start the API
 1. `git clone https://github.com/mow09/pizzaspirit`
 2. `cd pizzaspirit`
-3. `docker-compose up --build
-
-
-
+3. `docker-compose up --build`
+4. Filter
+    filterset_fields = ['customer__name', 'order_state']
+    admin or don in testdata
+    ('O', 'ordered'),
+    ('C', 'cooking'),
+    ('M', 'moving'),
+    ('D', 'delivered'),
+    ('R', 'received'),
+## http://localhost:8888/order/?search=don
+test data customer -
+- search
+http://localhost:8888/order/?customer__name=don
 
 # pizzaspirit
 - [x] add timestamp
@@ -47,10 +56,10 @@ The pizza flaves are set and will be used by id.
 # Pizza Order
 Pizza order is an ordered pizza. We have to set size, pizza_id (contains ingredients - flavor).
 ## Pizza Order specifics
-- choose size 
+- choose size
     - ['S', 'M', 'L']
 - set pizza_id for flavor
-- choose quantity 
+- choose quantity
    - [1,..,n]
 # Order
 An Order conatins a customer and the ordered pizzas via order_id.
@@ -120,21 +129,12 @@ def get_timestamp(self):
     return f"Created: {self.created_at}, Updated: {self.updated_at}"
 ```
 
-# Order States
-## cooking
-changed by pizzaspirit
-## moving
-changed by pizzaspirit
-## delivered
-changed by pizzaspirit
-## recieved
-changed by customer
-
 
 # Thanks
 - postman
 - model-bakery
 - pytest
+
 
 ## Going deeper
 env:
@@ -143,8 +143,20 @@ env:
 - DOCKER
 
 
-### if missing migration on postgres db
-```
-django.db.utils.ProgrammingError: relation "django_session" does not exist
-LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se..
-```
+# TODO
+- [ ] beauty json response
+    - [ ] ViewSets docstring
+    - for OPTION
+    - HEAD
+- [ ] authentication
+    - [ ] Custom User (django auth)
+- [ ] maybe more testing
+#### Order States
+##### cooking
+changed by pizzaspirit
+##### moving
+changed by pizzaspirit
+##### delivered
+changed by pizzaspirit
+##### recieved
+changed by customer

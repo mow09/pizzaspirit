@@ -5,6 +5,7 @@ from pizza.models import (
     # Customer,
 )
 from rest_framework import viewsets
+from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from api.serializers import (
     PizzaSerializer,
@@ -12,6 +13,7 @@ from api.serializers import (
     OrderSerializer,
     # CustomerSerializer,
     )
+# from rest_framework import filters
 
 
 
@@ -39,6 +41,9 @@ class PizzaOrderViewSet(viewsets.ModelViewSet):
 class OrderViewSet(viewsets.ModelViewSet):
     """API endpoint that allows Order to be views or edit."""
 
-    queryset = Order.objects.all().order_by()
-    # queryset = PizzaOrder.objects.all().order_by('-id')
+    queryset = Order.objects.all()
     serializer_class = OrderSerializer
+    # filter_backends = [filters.SearchFilter]
+    # or even OrderingFilter?
+    # search_fields = ['customer__name']
+    filterset_fields = ['customer__name', 'order_state']
