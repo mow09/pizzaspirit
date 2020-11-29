@@ -1,80 +1,80 @@
-[![Build Status](https://travis-ci.com/mow09/pizzaspirit.svg?=main)](https://travis-ci.com/mow09/pizzaspirit)
+[![Build Status](https://travis-ci.org/mow09/pizzaspirit.svg?branch=main)](https://travis-ci.org/mow09/pizzaspirit)
 
 ## Start the API
-### Clone this repository
-`git clone https://github.com/mow09/pizzaspirit.git`
-####
-2. `cd pizzaspirit`
+1. `git clone https://github.com/mow09/pizzaspirit.git`
+2. `cd pizzaspirit/`
 3. `docker-compose up --build`
-####
-4. Filter
-    filterset_fields = ['customer__username', 'order_state']
-    admin or don in testdata
-    ('O', 'ordered'),
-    ('C', 'cooking'),
-    ('M', 'moving'),
-    ('D', 'delivered'),
-    ('R', 'received'),
-## http://0.0.0.0:8420/order/?search=don
-test data customer -
-- search
+---
+## Browse `0.0.0.0:8420/` [PizzaSpiritDocker](http://0.0.0.0:8420/)
+_0.0.0.0:8420/ is the root - following root + viewset_
+### Viewsets
+- pizza/
+    - list pizza flavors:
+        1. Margarita
+        1. Marinara
+        1. Salami
+    - chosen by identifier in pizzaorder
+- pizzaorder/
+    - list all pizzaorders
+    - etc.
+    - set up an pizzaorder:
+        - choose pizza flavor by id
+        - quantity and
+        - size ∈ {'S', 'M', 'L'}
+        - like this: {"pizza_id":1,"quantity":1,"size":"M"}
+- order/
+    - list, create, delete...
+    - filter:
+        - ?customer_username=admin/ (check test data)
+        - ?order_state=<ORDERSTATE>/
+            - ('O', 'ordered'),
+            - ('C', 'cooking'),
+            - ('M', 'moving'),
+            - ('D', 'delivered'),
+            - ('R', 'received'),
 
-# pizzaspirit
+
+<!-- # pizzaspirit
 - [x] add timestamp
 - [ ] clean:  into one decorator or function in django model - just for less code
-- [ ] split settings
-    - [x] Docker takes another DB
+- [ ] split settings 4 real
+    - [x] Docker takes another DB -->
 
+## Test data
+Test data on http://0.0.0.0:8420/ if docker compose is up.
+### Created Pizza Flavors for you :+1:
+##### Example data:
+```json
+    {"id":1, "flavor": "Margarita"}
+    {"id":2, "flavor": "Marinara"}
+    {"id":3, "flavor": "Salami"}
+```
+### Take a flovor and create your pizza order
+```json
+{"pizza_id":1,"quantity":1,"size":"M"}
+```
+In other words, you want to have one Margarita pizza in medium size - where medium is `get_size_display()`.
+### Set an order with ordered pizzas and a customer by id
+```json
+{"pizzas_id": [1, 2],"customer": 2}
+```
+Here are the _already-for-you-creted_ customer
+1. admin
+1. Don
+1. Sapore
 
-- [ ] User in Customer
-- [ ] User OrderState
-
-## Example data
-### username
-Don, Sapore, admin
-####
-## Testing
+<!-- ## Testing
 - [ ] split it
 - pytest
 - pytest-django
 - pytet-cov
 - (mixer)
-- [ ]
-### APITestCase
-#### Missing
-- [ ] Order APITestCases
+- [ ] newman, postman
+- [ ] test data
+ -->
 
-# Have `docker-compose` on your machine
-## Run docker-compose
-# Pizza
-The pizza flaves are set and will be used by id.
-## Flavors:
-1. Margarita
-2. Marinara
-3. Salami
-
-# Pizza Order
-Pizza order is an ordered pizza. We have to set size, pizza_id (contains ingredients - flavor).
-## Pizza Order specifics
-- choose size
-    - ['S', 'M', 'L']
-- set pizza_id for flavor
-- choose quantity
-   - [1,..,n]
-# Order
-An Order conatins a customer and the ordered pizzas via order_id.
-## Order specifics
-- pizzas
-    - [pizzas], pissas=[pizza_ids] - all the ordered pizzas by id
-- customer
-    - ...
-
-
-# Thanks
-- postman
-- model-bakery
-- pytest
-
+## Thanks to
+Postman, Model-Bakery, pytest and DRF
 
 ## Going deeper
 env:
@@ -92,7 +92,7 @@ env:
 - [x] authentication
     - customer = user
 - [ ] maybe more testing
-
+<!--
 #### Order States
 - [ ] check for order PATCH
 ##### cooking
@@ -102,4 +102,4 @@ changed by pizzaspirit
 ##### delivered
 changed by pizzaspirit
 ##### recieved
-changed by customer
+changed by customer -->
