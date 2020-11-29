@@ -5,5 +5,5 @@ from .models import Pizza, PizzaOrder, Order, OrderState, Customer
 admin.site.register(Pizza)
 admin.site.register(PizzaOrder)
 admin.site.register(Order)
-admin.site.register(OrderState)
+# admin.site.register(OrderState)
 admin.site.register(Customer)

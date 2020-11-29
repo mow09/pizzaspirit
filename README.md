@@ -134,3 +134,16 @@ changed by customer
 
 
 # Thanks
+
+## Going deeper
+env:
+- TESTDUDE=False
+- MACOS=False
+- DOCKER
+
+
+### if missing migration on postgres db
+```
+django.db.utils.ProgrammingError: relation "django_session" does not exist
+LINE 1: ...ession_data", "django_session"."expire_date" FROM "django_se..
+```
