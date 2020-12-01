@@ -1,5 +1,5 @@
 [![Build Status](https://travis-ci.org/mow09/pizzaspirit.svg?branch=main)](https://travis-ci.org/mow09/pizzaspirit)
-<!--[![codecov](https://codecov.io/gh/mow09/pizzaspirit/branch/main/graph/badge.svg?token=YIWAZMEC6D)](https://codecov.io/gh/mow09/pizzaspirit)-->
+[![codecov](https://codecov.io/gh/mow09/pizzaspirit/branch/main/graph/badge.svg?token=YIWAZMEC6D)](https://codecov.io/gh/mow09/pizzaspirit)
 ## Start the API
 1. `git clone https://github.com/mow09/pizzaspirit.git`
 2. `cd pizzaspirit/`

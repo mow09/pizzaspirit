@@ -6,6 +6,6 @@ python:
 install:
   - pip install -r spirit/requirements.txt
 script:
-  - python spirit/manage.py test api
-#after_success:
-#  - bash <(curl -s https://codecov.io/bash)
+  - coverage run spirit/manage.py test api
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
