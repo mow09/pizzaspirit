@@ -1,6 +1,8 @@
 language: python
 python:
   - "3.6"
+env:
+  - DJANGO_ENV=test
 install:
   - pip install -r spirit/requirements.txt
 script:
