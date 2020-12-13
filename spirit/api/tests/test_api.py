@@ -1,5 +1,5 @@
 import json
-from pizza.models import Pizza, Order, PizzaOrder, Customer
+from pizza.models import Pizza, Order, PizzaOrder
 from api.serializers import PizzaSerializer, OrderSerializer, PizzaOrderSerializer
 
 # from django.contrib.auth.models import User
@@ -13,7 +13,7 @@ from model_bakery.recipe import Recipe
 
 
 
-class PizzaSerializerTestCase(APITestCase):
+class PizzaEndPointTestCase(APITestCase):
 
     # ('Margarita', 'margarita'),
     # ('Marinara', 'marinara'),
@@ -28,7 +28,7 @@ class PizzaSerializerTestCase(APITestCase):
 
 
 
-class PizzaOderSerializerTestCase(APITestCase):
+class PizzaOderEndPointTestCase(APITestCase):
     def setUp(self):
         self.pizza = baker.make(Pizza)
 

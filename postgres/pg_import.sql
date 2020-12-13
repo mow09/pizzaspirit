@@ -364,40 +364,6 @@ CREATE TABLE public.django_session (
 ALTER TABLE public.django_session OWNER TO django;
 
 --
--- Name: pizza_customer; Type: TABLE; Schema: public; Owner: django
---
-
-CREATE TABLE public.pizza_customer (
-    id integer NOT NULL,
-    name character varying(42) NOT NULL
-);
-
-
-ALTER TABLE public.pizza_customer OWNER TO django;
-
---
--- Name: pizza_customer_id_seq; Type: SEQUENCE; Schema: public; Owner: django
---
-
-CREATE SEQUENCE public.pizza_customer_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.pizza_customer_id_seq OWNER TO django;
-
---
--- Name: pizza_customer_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: django
---
-
-ALTER SEQUENCE public.pizza_customer_id_seq OWNED BY public.pizza_customer.id;
-
-
---
 -- Name: pizza_order; Type: TABLE; Schema: public; Owner: django
 --
 
@@ -467,44 +433,6 @@ ALTER TABLE public.pizza_order_pizzas_id_seq OWNER TO django;
 --
 
 ALTER SEQUENCE public.pizza_order_pizzas_id_seq OWNED BY public.pizza_order_pizzas.id;
-
-
---
--- Name: pizza_orderstate; Type: TABLE; Schema: public; Owner: django
---
-
-CREATE TABLE public.pizza_orderstate (
-    id integer NOT NULL,
-    ordered boolean NOT NULL,
-    cooking boolean NOT NULL,
-    moving boolean NOT NULL,
-    delivered boolean NOT NULL,
-    received boolean NOT NULL
-);
-
-
-ALTER TABLE public.pizza_orderstate OWNER TO django;
-
---
--- Name: pizza_orderstate_id_seq; Type: SEQUENCE; Schema: public; Owner: django
---
-
-CREATE SEQUENCE public.pizza_orderstate_id_seq
-    AS integer
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
-ALTER TABLE public.pizza_orderstate_id_seq OWNER TO django;
-
---
--- Name: pizza_orderstate_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: django
---
-
-ALTER SEQUENCE public.pizza_orderstate_id_seq OWNED BY public.pizza_orderstate.id;
 
 
 --
@@ -643,13 +571,6 @@ ALTER TABLE ONLY public.django_migrations ALTER COLUMN id SET DEFAULT nextval('p
 
 
 --
--- Name: pizza_customer id; Type: DEFAULT; Schema: public; Owner: django
---
-
-ALTER TABLE ONLY public.pizza_customer ALTER COLUMN id SET DEFAULT nextval('public.pizza_customer_id_seq'::regclass);
-
-
---
 -- Name: pizza_order id; Type: DEFAULT; Schema: public; Owner: django
 --
 
@@ -661,13 +582,6 @@ ALTER TABLE ONLY public.pizza_order ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.pizza_order_pizzas ALTER COLUMN id SET DEFAULT nextval('public.pizza_order_pizzas_id_seq'::regclass);
-
-
---
--- Name: pizza_orderstate id; Type: DEFAULT; Schema: public; Owner: django
---
-
-ALTER TABLE ONLY public.pizza_orderstate ALTER COLUMN id SET DEFAULT nextval('public.pizza_orderstate_id_seq'::regclass);
 
 
 --
@@ -847,6 +761,7 @@ COPY public.django_migrations (id, app, name, applied) FROM stdin;
 18	pizza	0001_initial	2020-11-29 19:37:58.881585+01
 19	pizza	0002_auto_20201129_1835	2020-11-29 19:37:58.912314+01
 20	sessions	0001_initial	2020-11-29 19:37:58.918329+01
+21	pizza	0003_auto_20201213_1523	2020-12-13 16:23:30.142468+01
 \.
 
 
@@ -860,14 +775,6 @@ COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
 
 
 --
--- Data for Name: pizza_customer; Type: TABLE DATA; Schema: public; Owner: django
---
-
-COPY public.pizza_customer (id, name) FROM stdin;
-\.
-
-
---
 -- Data for Name: pizza_order; Type: TABLE DATA; Schema: public; Owner: django
 --
 
@@ -877,6 +784,7 @@ COPY public.pizza_order (id, order_state, created_at, updated_at, customer_id) F
 3	C	2020-11-29 19:47:12.631597+01	2020-11-29 19:47:12.631614+01	3
 4	O	2020-11-29 19:47:52.312641+01	2020-11-29 19:47:52.312663+01	3
 5	R	2020-11-29 19:48:20.551338+01	2020-11-29 19:48:20.551354+01	2
+6	O	2020-11-29 21:38:53.913074+01	2020-11-29 21:38:53.913097+01	1
 \.
 
 
@@ -891,14 +799,7 @@ COPY public.pizza_order_pizzas (id, order_id, pizzaorder_id) FROM stdin;
 4	4	4
 5	5	2
 6	5	3
-\.
-
-
---
--- Data for Name: pizza_orderstate; Type: TABLE DATA; Schema: public; Owner: django
---
-
-COPY public.pizza_orderstate (id, ordered, cooking, moving, delivered, received) FROM stdin;
+7	6	1
 \.
 
 
@@ -987,35 +888,21 @@ SELECT pg_catalog.setval('public.django_content_type_id_seq', 11, true);
 -- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.django_migrations_id_seq', 20, true);
-
-
---
--- Name: pizza_customer_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
---
-
-SELECT pg_catalog.setval('public.pizza_customer_id_seq', 1, false);
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 21, true);
 
 
 --
 -- Name: pizza_order_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.pizza_order_id_seq', 5, true);
+SELECT pg_catalog.setval('public.pizza_order_id_seq', 6, true);
 
 
 --
 -- Name: pizza_order_pizzas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
 --
 
-SELECT pg_catalog.setval('public.pizza_order_pizzas_id_seq', 6, true);
-
-
---
--- Name: pizza_orderstate_id_seq; Type: SEQUENCE SET; Schema: public; Owner: django
---
-
-SELECT pg_catalog.setval('public.pizza_orderstate_id_seq', 1, false);
+SELECT pg_catalog.setval('public.pizza_order_pizzas_id_seq', 7, true);
 
 
 --
@@ -1169,14 +1056,6 @@ ALTER TABLE ONLY public.django_session
 
 
 --
--- Name: pizza_customer pizza_customer_pkey; Type: CONSTRAINT; Schema: public; Owner: django
---
-
-ALTER TABLE ONLY public.pizza_customer
-    ADD CONSTRAINT pizza_customer_pkey PRIMARY KEY (id);
-
-
---
 -- Name: pizza_order_pizzas pizza_order_pizzas_order_id_pizzaorder_id_19227605_uniq; Type: CONSTRAINT; Schema: public; Owner: django
 --
 
@@ -1198,14 +1077,6 @@ ALTER TABLE ONLY public.pizza_order_pizzas
 
 ALTER TABLE ONLY public.pizza_order
     ADD CONSTRAINT pizza_order_pkey PRIMARY KEY (id);
-
-
---
--- Name: pizza_orderstate pizza_orderstate_pkey; Type: CONSTRAINT; Schema: public; Owner: django
---
-
-ALTER TABLE ONLY public.pizza_orderstate
-    ADD CONSTRAINT pizza_orderstate_pkey PRIMARY KEY (id);
 
 
 --
