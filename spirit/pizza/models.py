@@ -8,11 +8,6 @@ SIZE_CHOICES = (
     ('L', 'large'),
 )
 
-FLAVOR_CHOICES =  (
-    ('Margarita', 'margarita'),
-    ('Marinara', 'marinara'),
-    ('Salami', 'salami'),
-)
 ORDER_STATE_CHOICES =  (
     ('O', 'ordered'),
     ('C', 'cooking'),
@@ -20,23 +15,18 @@ ORDER_STATE_CHOICES =  (
     ('D', 'delivered'),
     ('R', 'received'),
 )
-class Customer(models.Model):
-    name = models.CharField(max_length=42, default='Don')
-    def __str__(self):
-        return self.name
 
 
 class Pizza(models.Model):
     """The Pizza."""
 
-    # order_id =
-
     flavor = models.CharField(
-        choices=FLAVOR_CHOICES,
         max_length=42,
         )
+
+
     def __str__(self):
-        return f"Pizza {self.get_flavor_display().title()}"
+        return f"Pizza {self.flavor}"
 
 
 class PizzaOrder(models.Model):
@@ -68,42 +58,9 @@ class PizzaOrder(models.Model):
          in size {self.size}"
 
 
-
-class OrderState(models.Model):
-    """Order state to provide status."""
-
-    # order = models.ForeignKey(
-    #     Order,
-    #     related_name='order_state',
-    #     on_delete=models.CASCADE
-    #     )
-    # ordered_date = models.DateTimeField()
-    ordered = models.BooleanField(default=False)
-
-    cooking = models.BooleanField(default=False)
-    moving = models.BooleanField(default=False)
-    delivered = models.BooleanField(default=False)
-    received = models.BooleanField(default=False)
-#     order_id =
-    # order_id = models.IntegerField(
-    #     Order,
-    #     on_delete=models.CASCADE,
-    #     related_name='id',  # id in Order when made...
-    #     )
-
-    def __str__(self):
-        return f"Ordered:{self.ordered}"
-
-
 class Order(models.Model):
     """The whole order."""
 
-    # customer = models.ForeignKey(
-    #     Customer,
-    #     on_delete=models.CASCADE,
-    #     # related_name='customer'
-    #     )
-    # customer = Customer()
     customer = models.ForeignKey(
         settings.AUTH_USER_MODEL,
         on_delete=models.CASCADE,
@@ -113,12 +70,6 @@ class Order(models.Model):
             PizzaOrder,
             related_name='pizzas'
             )
-    # order_state = models.ForeignKey(
-    #     OrderState,
-    #     on_delete=models.CASCADE,
-    #     related_name='order_state',
-    #     blank=True
-    #     )
     order_state =  models.CharField(
         choices=ORDER_STATE_CHOICES,
         max_length=1,
@@ -128,8 +79,6 @@ class Order(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    # maybe all are cooking, moving, delivered
-    # change all of one bool for all pizzas... subfunction
 
     def get_timestamp(self):
         """Return a string of created_at and updated_at."""

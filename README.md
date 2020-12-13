@@ -12,8 +12,8 @@ _0.0.0.0:8420/ is the root - following root + viewset_
 #### pizza/
 - list pizza flavors:
     1. Margarita
-    1. Marinara
-    1. Salami
+    2. Marinara
+    3. Salami
 - chosen by identifier in pizzaorder
 #### pizzaorder/
 - list all pizzaorders
@@ -64,43 +64,19 @@ Here are the _already-for-you-creted_ customer
 1. Don
 1. Sapore
 
-<!-- ## Testing
-- [ ] split it
-- pytest
-- pytest-django
-- pytet-cov
-- (mixer)
-- [ ] newman, postman
-- [ ] test data
- -->
 
 ## Thanks to
-Postman, Model-Bakery, pytest and DRF
-
-## Going deeper
-env:
-- TESTDUDE=False
-- MACOS=False
-- DOCKER
+Postman, Model-Bakery, pytest, DRF and thanks to moberries for making the review.
 
 
-# TODO
-- [ ] beauty json response
-    - [ ] ViewSets docstring
-    - for OPTION
-    - HEAD
-- [ ] change case sensitiv for filter
-- [x] authentication
-    - customer = user
-- [ ] maybe more testing
-<!--
-#### Order States
-- [ ] check for order PATCH
-##### cooking
-changed by pizzaspirit
-##### moving
-changed by pizzaspirit
-##### delivered
-changed by pizzaspirit
-##### recieved
-changed by customer -->
+# TODO:
+- [ ] Order.pizzas is m2m field to PizzaOrder instead Pizza with `through=PizzaOrder`
+    - means what?
+- [ ]  no validation for duplicated Pizza entries
+- [ ] PizzaViewSet/UserViewSet share endpoint description
+    - [x] cleaned
+    - [ ] write better view point instructions !!!
+- [ ] `PizzaOrderSerializer.pizza_id` should be `write_only=True`
+    - why this - shouldn'T be the
+- [ ] - naming of tests differs from actual function, candidate tests endpoints not the serialization
+    - how should I call them?

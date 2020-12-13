@@ -68,66 +68,44 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'spirit.wsgi.application'
 
+DJANGO_ENV = os.environ.get('DJANGO_ENV')
 
-# Database
-# https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
-# TODO: split it to development
-#DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-# TODO:
-# setup Docker PostgreSQL for Backend
-# if 'TESTDUDE' in os.environ:
-#     print('\n\n\n\t\tTESTDUDE\n\n')
-#     if os.environ['TESTDUDE'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
-#         DATABASES = {
-#             'default': {
-#                 'ENGINE': 'django.db.backends.sqlite3',
-#                 'NAME': str(BASE_DIR / 'db.sqlite3'),
-#             }
-#         }
-if 'MACOS' in os.environ:
-    if os.environ['MACOS'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
-        print('\n\n\n\t\tON MACOS\n\n')
-        DATABASES = {
-           'default': {
-               'ENGINE': 'django.db.backends.postgresql_psycopg2',
-               'NAME': 'pizzaspirit',  # DB_NAME
-               'USER': 'django',
-               'PASSWORD': 'admin',
-               'HOST': '127.0.0.1',
-               'PORT': '5432',
-           }
+if DJANGO_ENV == 'macos':
+    print('\n\n\n\t\tON MACOS\n\n')
+    DATABASES = {
+       'default': {
+           'ENGINE': 'django.db.backends.postgresql_psycopg2',
+           'NAME': 'pizzaspirit',  # DB_NAME
+           'USER': 'django',
+           'PASSWORD': 'admin',
+           'HOST': '127.0.0.1',
+           'PORT': 5432,
        }
-elif 'ONDOCKER' in os.environ:
-    if os.environ['ONDOCKER'] in ['True', 'TRUE', 'y', 'Y', 'yes', 'YES', True, 1]:
-        print('\n\n\n\t\tON DOCKER\n\n')
-        DATABASES = {
-            'default': {
-                'ENGINE': 'django.db.backends.postgresql',
-                'NAME': 'pizzaspirit',
-                'USER': 'django',
-                'PASSWORD': 'admin',
-                'HOST': 'db',
-                #'HOST': '127.0.0.1',
-        #        'HOST': '0.0.0.0',
-                'PORT': 5432,
-            }
+   }
+elif DJANGO_ENV == 'docker':
+    print('\n\n\n\t\tON DOCKER\n\n')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'pizzaspirit',
+            'USER': 'django',
+            'PASSWORD': 'admin',
+            'HOST': 'db',
+            #'HOST': '127.0.0.1',
+    #        'HOST': '0.0.0.0',
+            'PORT': 5432,
         }
-else:
-    print("SQLite3")
-    if 'TESTDUDE' in os.environ:
-        print(os.environ['TESTDUDE'], 'is', type(os.environ['TESTDUDE']))
+    }
+elif DJANGO_ENV == 'test':
+    print("SQLite3 for testing")
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.sqlite3',
             'NAME': str(BASE_DIR / 'db.sqlite3'),
         }
     }
+else:
+    print("NO DJANGO_ENV SET")
 
 
 # DB_USER = 'django'

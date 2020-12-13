@@ -8,10 +8,7 @@ services:
       - POSTGRES_DB=pizzaspirit
       - POSTGRES_USER=django
       - POSTGRES_PASSWORD=admin
-#      - PGDATA=/var/lib/postgresql/data
     build: ./postgres/.
-#    ports: 
-#      - "5555:5432"
 
   spirit:
     build: spirit/.

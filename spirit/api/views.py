@@ -13,47 +13,32 @@ from api.serializers import (
     OrderSerializer,
     UserSerializer,
     )
-# from rest_framework import filters
 
 
-# class PizzaViewSet(viewsets.ViewSet):
 class UserViewSet(viewsets.ReadOnlyModelViewSet):
-    """API endpoint that allows Pizza to be views or edit."""
+    """API endpoint that allows User to be viewed."""
 
-    queryset = User.objects.all().order_by()
+    queryset = User.objects.all()
     serializer_class = UserSerializer
-    # def list(self, request):
-    #     queryset = Pizza.objects.all()
-    #     serializer = PizzaSerializer(queryset, many=True)
-    #     return Response(serializer.data)
 
-# class PizzaViewSet(viewsets.ViewSet):
+
 class PizzaViewSet(viewsets.ModelViewSet):
-    """API endpoint that allows Pizza to be views or edit."""
+    """API endpoint that allows Pizza to be viewed."""
 
-    queryset = Pizza.objects.all().order_by()
+    queryset = Pizza.objects.all()
     serializer_class = PizzaSerializer
-    # def list(self, request):
-    #     queryset = Pizza.objects.all()
-    #     serializer = PizzaSerializer(queryset, many=True)
-    #     return Response(serializer.data)
-
 
 
 class PizzaOrderViewSet(viewsets.ModelViewSet):
-    """API endpoint that allows PizzaOrder to be views or edit."""
+    """API endpoint that allows PizzaOrder to be viewed."""
 
-    queryset = PizzaOrder.objects.all().order_by()
-    # queryset = PizzaOrder.objects.all().order_by('-id')
+    queryset = PizzaOrder.objects.all()
     serializer_class = PizzaOrderSerializer
 
 
 class OrderViewSet(viewsets.ModelViewSet):
-    """API endpoint that allows Order to be views or edit."""
+    """API endpoint that allows Order to be viewed."""
 
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
-    # filter_backends = [filters.SearchFilter]
-    # or even OrderingFilter?
-    # search_fields = ['customer__name']
     filterset_fields = ['customer__username', 'order_state']
