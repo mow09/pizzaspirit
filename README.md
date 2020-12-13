@@ -26,13 +26,15 @@ _0.0.0.0:8420/ is the root - following root + viewset_
 #### order/
 - list, create, delete...
 - filter:
-    - ?customer_username=admin/ (check test data)
-    - ?order_state=<ORDERSTATE>/
-        - ('O', 'ordered'),
-        - ('C', 'cooking'),
-        - ('M', 'moving'),
-        - ('D', 'delivered'),
-        - ('R', 'received'),
+    - by name like
+        - ?customer_username=admin/ (check test data)
+    - by order state 
+        - ?order_state=O/
+            - ('O', 'ordered'),
+            - ('C', 'cooking'),
+            - ('M', 'moving'),
+            - ('D', 'delivered'),
+            - ('R', 'received'),
 
 
 <!-- # pizzaspirit
